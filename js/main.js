@@ -167,7 +167,7 @@ require(['jquery'], function ($) {
 	/**
 	 * 文件上传函数
 	 * @param file 文件
-	 * @param callback 回调函数 
+	 * @param callback 回调函数
 	 */
 	var uploadFile = function (file, callback) {
 		var imageData = new FormData();
@@ -531,6 +531,7 @@ require(['jquery'], function ($) {
 		history.pushState(null, document.title, changeParam("page", "search"));
 		// 输入框边框动画
 		$('.anitInput').remove();
+
 		var ornamentInput = $(".ornament-input-group");
 		var top = ornamentInput.offset().top;
 		var left = ornamentInput.offset().left;
@@ -553,9 +554,11 @@ require(['jquery'], function ($) {
 		});
 		$('body').append(anitInput);
 		ornamentInput.css('opacity', 0);
-		if ($(window).data('anitInputFn')) {
+
+		//if ($(window).data('anitInputFn')) {
 			$(window).unbind('resize', $(window).data('anitInputFn'));
-		}
+			$(window).bind('resize', $(window).data('anitInputFn'));
+		//}
 		var anitInputFn = function () {
 			var inputBg = $('.input-bg');
 			var scaleX = inputBg.outerWidth() / ornamentInput.outerWidth();
@@ -570,6 +573,8 @@ require(['jquery'], function ($) {
 		}
 		$(window).data('anitInputFn', anitInputFn());
 		$(window).bind('resize', anitInputFn());
+		//隐藏图标
+		$(".logo-class").hide();
 		// 弹出软键盘
 		$(".s-temp").focus();
 		// 书签动画
@@ -611,6 +616,8 @@ require(['jquery'], function ($) {
 				'opacity': '',
 				'border-color': ''
 			});
+			//显示图标
+			$(".logo-class").show();
 			// 书签动画
 			$(".bookmark").removeClass("animation");
 			// 隐藏搜索页
