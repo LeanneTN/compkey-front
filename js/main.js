@@ -568,8 +568,8 @@ require(['jquery'], function ($) {
 				'border-color': 'var(--dark)'
 			});
 		}
-		$(window).data('anitInputFn', anitInputFn);
-		$(window).bind('resize', anitInputFn);
+		$(window).data('anitInputFn', anitInputFn());
+		$(window).bind('resize', anitInputFn());
 		// 弹出软键盘
 		$(".s-temp").focus();
 		// 书签动画
