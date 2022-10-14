@@ -23,6 +23,8 @@ body {
 	background-position: top center;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
+	background: url('../img/background.jpg') no-repeat;
+	background-size: 100% 100%;
 }
 body,html {
 	height: 100%;
@@ -979,4 +981,11 @@ body,html {
 /* 书签排序幽灵方块 */
 .ghost{
 	opacity: .1 !important;
+}
+
+.logo-class{
+	width: 50%;
+	display: flex;
+	margin: auto;
+	margin-bottom: 20px;
 }
