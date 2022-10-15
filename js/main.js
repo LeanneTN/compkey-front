@@ -468,11 +468,10 @@ require(['jquery'], function ($) {
 		},
 		bind: function () {
 			var that = this;
-			// 监听touch事件，防止点击后弹出或收回软键盘
-			$('.emptyHistory')[0].addEventListener("touchstart", function (e) {
+			$('.emptyHistory')[0].addEventListener("click", function (e) {
 				e.preventDefault();
 			}, false);
-			$('.emptyHistory')[0].addEventListener("touchend", function (e) {
+			$('.emptyHistory')[0].addEventListener("click", function (e) {
 				if ($('.emptyHistory').hasClass('animation')) {
 					that.empty();
 				} else {
