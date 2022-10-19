@@ -645,11 +645,14 @@ require(['jquery'], function ($) {
 	}, false);
 
 	$(".suggestion").click(function (evt) {
+		let text;
 		if (evt.target.nodeName === "SPAN") {
 			$('.search-input').focus().val($(evt.target).parent().text()).trigger("propertychange");
 			return;
 		} else {
-			searchText(evt.target.innerText);
+			let contentHtml = evt.target.innerText;
+			let text = contentHtml.substring(6)
+			searchText(text);
 		}
 	});
 	var qs_ajax = null;
@@ -773,7 +776,7 @@ require(['jquery'], function ($) {
 					}
 					let key = data[i].key
 					let val = data[i].value
-					html += '<li><div>竞争关键字：' + key + '</div><div style="float: right">竞争度：' + val + '</div></li>';
+					html += '<li><div class="compKey">竞争关键字：' + key + '</div><div style="float: right">竞争度：' + val + '</div></li>';
 				}
 				$(".suggestion").show().html(html).scrollTop($(".suggestion")[0].scrollHeight);
             }
