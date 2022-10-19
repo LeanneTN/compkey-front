@@ -680,6 +680,7 @@ require(['jquery'], function ($) {
 					if ($(that).val() !== wd) {
 						return;
 					}
+					// console.log(res)
 					var data = res.s;
 					var isStyle = $(".suggestion").html();
 					var html = "";
@@ -754,15 +755,27 @@ require(['jquery'], function ($) {
 		if(!statement)
 			return
 		searchHistory.add(statement)
-		history.go(-1)
+		// history.go(-1)
 		$.ajax({
             type : 'POST',
             url : 'http://localhost:8089/message/send',
             dataType : 'json',
             data : {'statement' : statement},
             success : function (res) {
-                let dataList = res
-
+				var data = res;
+				console.log(data)
+				var isStyle = $(".suggestion").html();
+				var html = "";
+				for (var i = data.length - 1; i >= 0; i--) {
+					var style = "";
+					if (isStyle === "") {
+						style = "animation: fadeInDown both .5s " + i * 0.05 + 's"';
+					}
+					let key = data[i].key
+					let val = data[i].value
+					html += '<li><div>竞争关键字：' + key + '</div><div style="float: right">竞争度：' + val + '</div></li>';
+				}
+				$(".suggestion").show().html(html).scrollTop($(".suggestion")[0].scrollHeight);
             }
         })
 	}
@@ -778,7 +791,7 @@ require(['jquery'], function ($) {
 		} else {
 			if (!text) {
 				$(".search-input").blur();
-				history.go(-1);
+				// history.go(-1);
 			} else {
 				// searchText(text);
 				searchTextRewrite(text)
@@ -806,7 +819,7 @@ require(['jquery'], function ($) {
 			return;
 		}
 		searchHistory.add(text);
-		history.go(-1);
+		// history.go(-1);
 		setTimeout(function () { // 异步执行 兼容QQ浏览器
 			if (settings.get('engines') === "via") {
 				window.via.searchText(text);
