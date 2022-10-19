@@ -750,6 +750,23 @@ require(['jquery'], function ($) {
 		}
 	});
 
+	function searchTextRewrite(statement){
+		if(!statement)
+			return
+		searchHistory.add(statement)
+		history.go(-1)
+		$.ajax({
+            type : 'POST',
+            url : 'http://localhost:8089/message/send',
+            dataType : 'json',
+            data : {'statement' : statement},
+            success : function (res) {
+                let dataList = res
+
+            }
+        })
+	}
+
 	$(".search-btn").click(function () {
 		var text = $(".search-input").val();
 		if ($(".search-btn").text() === "进入") {
@@ -763,7 +780,8 @@ require(['jquery'], function ($) {
 				$(".search-input").blur();
 				history.go(-1);
 			} else {
-				searchText(text);
+				// searchText(text);
+				searchTextRewrite(text)
 			}
 		}
 	});
