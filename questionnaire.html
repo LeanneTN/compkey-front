@@ -74,16 +74,20 @@
         score = 5
       }
       console.log(score)
-
+      let query = window.location.search.substring(1)
+      let vars = query.split("&")
+      seed = decodeURI(vars[0])
+      compkey = decodeURI(vars[1])
+      compDegree = vars[2]
       $.ajax({
         type: 'POST',
         url: 'http://localhost:8089/message/score',
         dataType: 'json',
         data: {
-          "seed": " ",
-          "compkey": " ",
+          "seed": seed,
+          "compkey": compkey,
           "score": score,
-          "compDegree": 1.232
+          "compDegree": compDegree
         },
         success() {
           console.log(score)

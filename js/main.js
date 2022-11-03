@@ -659,7 +659,7 @@ require(['jquery'], function ($) {
 			let compVal = document.getElementById("compVal").innerText.split("竞争度：");
 			let lastCompVal = compVal[compVal.length-1];
 			if(text.charAt(1) === "."){
-				window.location.replace("http://localhost:63342/compkey-front/questionnaire.html?"+lastSeedWord+"&"+lastCompKey+"&"+lastCompVal);
+				window.location.replace("http://localhost:63344/quarkHomePage/questionnaire.html?"+lastSeedWord+"&"+lastCompKey+"&"+lastCompVal);
 			} else {
 				searchText(text);
 			}
