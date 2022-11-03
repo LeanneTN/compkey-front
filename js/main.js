@@ -651,8 +651,12 @@ require(['jquery'], function ($) {
 			return;
 		} else {
 			let contentHtml = evt.target.innerText;
-			let text = contentHtml.substring(6)
-			searchText(text);
+			let text = (contentHtml.charAt(1)==="."?contentHtml:contentHtml.substring(6));
+			if(text.charAt(1) === "."){
+				window.location.replace("http://localhost:63342/compkey-front/questionnaire.html");
+			} else {
+				searchText(text);
+			}
 		}
 	});
 	var qs_ajax = null;
@@ -776,7 +780,7 @@ require(['jquery'], function ($) {
 					}
 					let key = data[i].key
 					let val = data[i].value
-					html += '<li><div class="compKey">竞争关键字：' + key + '</div><div style="float: right">竞争度：' + val + '</div></li>';
+					html += '<li><div class="compKey">竞争关键字：' + key + '</div><div style="float: right">竞争度：' + '<a href="#">' + val + '</a>' + '</div></li>';
 				}
 				$(".suggestion").show().html(html).scrollTop($(".suggestion")[0].scrollHeight);
             }
