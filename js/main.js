@@ -652,8 +652,14 @@ require(['jquery'], function ($) {
 		} else {
 			let contentHtml = evt.target.innerText;
 			let text = (contentHtml.charAt(1)==="."?contentHtml:contentHtml.substring(6));
+			let seedWord = document.getElementById("seedWord").innerText.split("种子关键词：");
+			let lastSeedWord = seedWord[seedWord.length-1];
+			let compKey = document.getElementById("compKey").innerText.split("竞争关键词：");
+			let lastCompKey = compKey[compKey.length-1];
+			let compVal = document.getElementById("compVal").innerText.split("竞争度：");
+			let lastCompVal = compVal[compVal.length-1];
 			if(text.charAt(1) === "."){
-				window.location.replace("http://localhost:63342/compkey-front/questionnaire.html");
+				window.location.replace("http://localhost:63342/compkey-front/questionnaire.html?"+lastSeedWord+"&"+lastCompKey+"&"+lastCompVal);
 			} else {
 				searchText(text);
 			}
@@ -778,9 +784,10 @@ require(['jquery'], function ($) {
 					if (isStyle === "") {
 						style = "animation: fadeInDown both .5s " + i * 0.05 + 's"';
 					}
+					let seedWord = data[i].seedWord
 					let key = data[i].key
 					let val = data[i].value
-					html += '<li><div class="compKey">竞争关键字：' + key + '</div><div style="float: right">竞争度：' + '<a href="#">' + val + '</a>' + '</div></li>';
+					html += '<li><div style="float: left" class="seedWord" id="seedWord">种子关键词：' + seedWord +'</div><div class="compKey" id="compKey" style="float: center">竞争关键词：' + key + '</div><div id="compVal" class="compVal" style="float: right">竞争度：' + '<a href="#">' + val + '</a>' + '</div></li>';
 				}
 				$(".suggestion").show().html(html).scrollTop($(".suggestion")[0].scrollHeight);
             }
