@@ -35,21 +35,62 @@
     </form>
   </div>
 </div>
+<script src="js/lib/jquery.js"></script>
 <script>
-  const btn = document.querySelector("button");
-  const post = document.querySelector(".post");
-  const widget = document.querySelector(".star-widget");
-  const editBtn = document.querySelector(".edit");
-  btn.onclick = () => {
-    widget.style.display = "none";
-    post.style.display = "block";
-    editBtn.onclick = () => {
-      widget.style.display = "block";
-      post.style.display = "none";
+  $(function () {
+    const btn = document.querySelector("button");
+    const post = document.querySelector(".post");
+    const widget = document.querySelector(".star-widget");
+    const editBtn = document.querySelector(".edit");
+    btn.onclick = () => {
+      widget.style.display = "none";
+      post.style.display = "block";
+      editBtn.onclick = () => {
+        widget.style.display = "block";
+        post.style.display = "none";
+        window.history.go(-1)
+      }
+      // window.setTimeout("window.history.go(-1)", 2000);
+      return false;
     }
-    window.setTimeout("window.history.go(-1)",2000);
-    return false;
-  }
+
+    let rate5 = document.getElementById("rate-5")
+    let rate4 = document.getElementById("rate-4")
+    let rate3 = document.getElementById("rate-3")
+    let rate2 = document.getElementById("rate-2")
+    let rate1 = document.getElementById("rate-1")
+
+    let score = 0
+    $(document.body).on("click", ".post", function () {
+      if (rate1.checked) {
+        score = 1
+      } else if (rate2.checked) {
+        score = 2
+      } else if (rate3.checked) {
+        score = 3
+      } else if (rate4.checked) {
+        score = 4
+      } else if (rate5.checked) {
+        score = 5
+      }
+      console.log(score)
+
+      $.ajax({
+        type: 'POST',
+        url: 'http://localhost:8089/message/score',
+        dataType: 'json',
+        data: {
+          "seed": " ",
+          "compkey": " ",
+          "score": score,
+          "compDegree": 1.232
+        },
+        success() {
+          console.log(score)
+        }
+      })
+    })
+  })
 </script>
 
 </body>
