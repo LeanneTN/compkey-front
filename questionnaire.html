@@ -48,10 +48,43 @@
       editBtn.onclick = () => {
         widget.style.display = "block";
         post.style.display = "none";
-        window.history.go(-1)
+        let url = location.search;
+        let decodeURL = decodeURI(url);
+        let paramsArray = decodeURL.split("?");
+        let params = paramsArray[paramsArray.length-1];
+        let param = params.split("&");
+        let firstParam = param[0];
+        //window.location.replace("http://localhost:63342/compkey-front/index.html?page=search");
+        window.location.href="http://localhost:63342/compkey-front/index.html?fisrtParam";
+        let input = $(".ornament-input-group")
+        input.click();
+        //alert("input do");
+        let searchInput = $(".search-input");
+        searchInput.click();
+        searchInput.val(firstParam);
+        let searchBtn = $(".search-btn").click();
+        //window.location.href="http://localhost:63342/compkey-front/index.html?fisrtParam"+firstParam;
+        //window.history.back(-1);
+        //window.history.go(-1)
       }
       // window.setTimeout("window.history.go(-1)", 2000);
-      return false;
+      // alert("kk");
+      // let url = location.search;
+      // let decodeURL = decodeURI(url);
+      // let paramsArray = decodeURL.split("?");
+      // let params = paramsArray[paramsArray.length-1];
+      // let param = params.split("&");
+      // let firstParam = param[0];
+      // //window.location.replace("http://localhost:63342/compkey-front/index.html?page=search");
+      // window.location.href="http://localhost:63342/compkey-front/index.html?fisrtParam";
+      // let input = $(".ornament-input-group")
+      // input.click();
+      // alert("input do");
+      // let searchInput = $(".search-input");
+      // searchInput.click();
+      // searchInput.val(firstParam);
+      // let searchBtn = $(".search-btn").click();
+       return false;
     }
 
     let rate5 = document.getElementById("rate-5")
